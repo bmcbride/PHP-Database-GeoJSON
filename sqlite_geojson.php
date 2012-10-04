@@ -15,7 +15,7 @@ function wkb_to_json($wkb) {
 }
 
 # Connect to SQLite database
-$conn = new SQLite3('mydatabase.sqlite');
+$conn = new PDO('sqlite:mydatabase.sqlite');
 
 # Build SQL SELECT statement and return the geometry as a GeoJSON element
 $sql = 'SELECT *, GEOMETRY AS wkb FROM mytable';
@@ -34,7 +34,7 @@ $geojson = array(
 );
 
 # Loop through rows to build feature arrays
-while ($row = $rs->fetchArray(SQLITE3_ASSOC)) {
+while ($row = $rs->fetch(PDO::FETCH_ASSOC)) {
     $properties = $row;
     # Remove wkb and geometry fields from properties
     unset($properties['wkb']);
@@ -49,6 +49,6 @@ while ($row = $rs->fetchArray(SQLITE3_ASSOC)) {
 }
 
 header('Content-type: application/json');
-echo json_encode($geojson);
+echo json_encode($geojson, JSON_NUMERIC_CHECK);
 $conn = NULL;
 ?>
