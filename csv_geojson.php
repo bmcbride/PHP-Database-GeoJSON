@@ -5,8 +5,9 @@
  * Author:  Bryan R. McBride, GISP
  * Contact: bryanmcbride.com
  * GitHub:  https://github.com/bmcbride/PHP-Database-GeoJSON
- */
-// Read the CSV file
+*/
+
+# Read the CSV file
 $csvfile = 'my_csv_file.csv';
 $handle = fopen($csvfile, 'r');
 
