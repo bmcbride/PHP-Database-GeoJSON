@@ -19,7 +19,7 @@ $sql = 'SELECT *, public.ST_AsGeoJSON(public.ST_Transform((the_geom),4326),6) as
 * Leaflet: map.getBounds().toBBoxString()
 */
 if (isset($_GET['bbox']) || isset($_POST['bbox'])) {
-    $bbox = explode(",", $_GET['bbox']);
+    $bbox = explode(',', $_GET['bbox']);
     $sql = $sql . ' WHERE transform(the_geom, 4326) && ST_SetSRID(ST_MakeBox2D(ST_Point('.$bbox[0].', '.$bbox[1].'), ST_Point('.$bbox[2].', '.$bbox[3].')),4326);';
 }
 
