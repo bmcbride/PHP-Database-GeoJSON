@@ -1,5 +1,5 @@
 <?php
-/**
+/*
  * Title:   PostGIS to GeoJSON
  * Notes:   Query a PostGIS table or view and return the results in GeoJSON format, suitable for use in OpenLayers, Leaflet, etc.
  * Author:  Bryan R. McBride, GISP
@@ -12,6 +12,16 @@ $conn = new PDO('pgsql:host=localhost;dbname=mypostgisdb','myusername','mypasswo
 
 # Build SQL SELECT statement and return the geometry as a GeoJSON element
 $sql = 'SELECT *, public.ST_AsGeoJSON(public.ST_Transform((the_geom),4326),6) as geojson FROM mytable';
+
+/*
+* If bbox variable is set, only return records that are within the bounding box
+* bbox should be a string in the form of 'southwest_lng,southwest_lat,northeast_lng,northeast_lat'
+* Leaflet: map.getBounds().toBBoxString()
+*/
+if (isset($_GET['bbox']) || isset($_POST['bbox'])) {
+    $bbox = explode(",", $_GET['bbox']);
+    $sql = $sql . ' WHERE transform(the_geom, 4326) && ST_SetSRID(ST_MakeBox2D(ST_Point('.$bbox[0].', '.$bbox[1].'), ST_Point('.$bbox[2].', '.$bbox[3].')),4326);';
+}
 
 # Try query or error
 $rs = $conn->query($sql);
