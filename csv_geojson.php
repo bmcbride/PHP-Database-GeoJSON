@@ -30,7 +30,6 @@ while (($row = fgetcsv($handle, 1000, ',')) !== FALSE) {
         unset($properties['y']);
         $feature = array(
             'type' => 'Feature',
-            'geometry' => 'Geometry',
             'geometry' => array(
                 'type' => 'Point',
                 'coordinates' => array(
