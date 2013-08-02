@@ -1,7 +1,7 @@
 <?php
 /*
  * Title:   CSV to GeoJSON
- * Notes:   Convert a comma separated CSV file with x & y fields to GeoJSON format, suitable for use in OpenLayers, Leaflet, etc. Only point features are supported.
+ * Notes:   Convert a comma separated CSV file of points with x & y fields to GeoJSON format, suitable for use in OpenLayers, Leaflet, etc. Only point features are supported.
  * Author:  Bryan R. McBride, GISP
  * Contact: bryanmcbride.com
  * GitHub:  https://github.com/bmcbride/PHP-Database-GeoJSON
