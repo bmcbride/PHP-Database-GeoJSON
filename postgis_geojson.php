@@ -18,9 +18,9 @@ $sql = 'SELECT *, public.ST_AsGeoJSON(public.ST_Transform((the_geom),4326),6) as
 * bbox should be a string in the form of 'southwest_lng,southwest_lat,northeast_lng,northeast_lat'
 * Leaflet: map.getBounds().toBBoxString()
 */
-if (isset($_GET['bbox']) || isset($_POST['bbox'])) {
+if (isset($_GET['bbox'])) {
     $bbox = explode(',', $_GET['bbox']);
-    $sql = $sql . ' WHERE transform(the_geom, 4326) && ST_SetSRID(ST_MakeBox2D(ST_Point('.$bbox[0].', '.$bbox[1].'), ST_Point('.$bbox[2].', '.$bbox[3].')),4326);';
+    $sql = $sql . ' WHERE public.ST_Transform(the_geom, 4326) && public.ST_SetSRID(public.ST_MakeBox2D(public.ST_Point('.$bbox[0].', '.$bbox[1].'), public.ST_Point('.$bbox[2].', '.$bbox[3].')),4326);';
 }
 
 # Try query or error
