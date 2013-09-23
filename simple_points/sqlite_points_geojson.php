@@ -11,7 +11,7 @@
 $conn = new PDO('sqlite:mydatabase.sqlite');
 
 # Build SQL SELECT statement including x and y columns
-$sql = 'SELECT *, x AS x, x AS y FROM mytable';
+$sql = 'SELECT *, x AS x, y AS y FROM mytable';
 
 /*
 * If bbox variable is set, only return records that are within the bounding box
