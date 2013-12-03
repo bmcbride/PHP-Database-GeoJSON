@@ -11,7 +11,7 @@
 $conn = new PDO('pgsql:host=localhost;dbname=mypostgisdb','myusername','mypassword');
 
 # Build SQL SELECT statement and return the geometry as a GeoJSON element
-$sql = 'SELECT *, public.ST_AsGeoJSON(public.ST_Transform((the_geom),4326),6) as geojson FROM mytable';
+$sql = 'SELECT *, public.ST_AsGeoJSON(public.ST_Transform((the_geom),4326),6) AS geojson FROM mytable';
 
 /*
 * If bbox variable is set, only return records that are within the bounding box
