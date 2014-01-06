@@ -8,7 +8,7 @@
  */
 
 # Connect to MySQL database
-$conn = new PDO('pgsql:host=localhost;dbname=mypostgisdb','myusername','mypassword');
+$conn = new PDO('mysql:host=localhost;dbname=mydatabase','myusername','mypassword');
 
 # Build SQL SELECT statement including x and y columns
 $sql = 'SELECT *, x AS x, y AS y FROM mytable';
